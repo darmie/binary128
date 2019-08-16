@@ -1,3 +1,4 @@
 -main Main
 -cp src/
+
 -java bin/Binary128.jar

@@ -1,3 +1,5 @@
--main Main
+
+
+# -main Main
 -cp src/
 -cpp bin/Binary128
