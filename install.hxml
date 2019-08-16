@@ -1,0 +1,11 @@
+-cmd haxelib install build-neko.hxml --always 
+--next
+-cmd haxelib install build-nodejs.hxml --always 
+--next
+-cmd haxelib install build-js.hxml --always 
+--next
+-cmd haxelib install build-cpp.hxml --always 
+--next
+-cmd haxelib install build-cs.hxml --always 
+--next
+-cmd haxelib install build-java.hxml --always 

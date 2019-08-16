@@ -1,0 +1,14 @@
+{
+  "name": "Binary128",
+  "url" : "https://github.com/YOUR_NAME/Binary128/",
+  "license": "MIT",
+  "tags": ["haxe","neko","nodejs","js","cpp","cs","java"],
+  "description": "description of Binary128",
+  "classPath": "src",
+  "version": "0.0.1",
+  "releasenote": "Initial release",
+  "contributors": ["YOUR_NAME"],
+  "dependencies": {
+
+  }
+}
