@@ -38,7 +38,7 @@ class Leb128 {
         }while (more);
     }
 
-    public static function writeUnsignedLEB128(buf:BytesOutput, value:cs.types.UInt64) {
+    public static function writeUnsignedLEB128(buf:BytesOutput, value:cs.types.UInt64):Void {
         do {
             var bt = (value & 0x7f);
             value >>= 7;
