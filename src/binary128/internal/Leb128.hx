@@ -26,58 +26,58 @@ typedef Leb128T = binary128.internal.java.Leb128;
 class Leb128 {
     public static function writeInt32(w:BytesOutput, val) {
         #if cpp 
-        Leb128T.writeInt32(cast val, w);
+        Leb128T.writeInt32(val, w);
         #end
 
         #if cs 
-        Leb128T.writeSignedLEB128(w, cast val);
+        Leb128T.writeSignedLEB128(w, val);
         #end
 
         #if java 
-        Leb128T.writeSignedLeb128(w, cast val);
+        Leb128T.writeSignedLeb128(w, val);
         #end
         
     }
 
     public static function writeUint32(w:BytesOutput, val) {
         #if cpp 
-        Leb128T.writeUint32(cast val, w);
+        Leb128T.writeUint32(val, w);
         #end
 
         #if cs 
-        Leb128T.writeUnsignedLEB128(w, cast val);
+        Leb128T.writeUnsignedLEB128(w, val);
         #end
 
         #if java 
-        Leb128T.writeUnsignedLeb128(w, cast val);
+        Leb128T.writeUnsignedLeb128(w, val);
         #end
     }
 
     public static function writeInt64(w:BytesOutput, val) {
         #if cpp 
-        Leb128T.writeInt64(cast val, w);
+        Leb128T.writeInt64(val, w);
         #end
 
         #if cs 
-        Leb128T.writeSignedLEB128(w, cast val);
+        Leb128T.writeSignedLEB128(w, val);
         #end
 
         #if java 
-        Leb128T.writeSignedLeb128(w, cast val);
+        Leb128T.writeSignedLeb128(w, val);
         #end
     }
 
     public static function writeUint64(w:BytesOutput, val) {
         #if cpp 
-        Leb128T.writeUint64(cast val, w);
+        Leb128T.writeUint64(val, w);
         #end
 
         #if cs 
-        Leb128T.writeUnsignedLEB128(w, cast val);
+        Leb128T.writeUnsignedLEB128(w, val);
         #end
 
         #if java 
-        Leb128T.writeUnsignedLeb128(w, cast val);
+        Leb128T.writeUnsignedLeb128(w, val);
         #end
     }
 
