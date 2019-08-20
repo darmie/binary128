@@ -20,12 +20,13 @@ package binary128.internal.java;
 import haxe.io.BytesInput;
 import haxe.io.BytesOutput;
 
-import java.lang.IntegerClass;
+import java.lang.Integer;
 
 /**
  * Reads and writes DWARFv3 LEB 128 signed and unsigned integers. See DWARF v3
  * section 7.6.
  */
+#if java
 class Leb128 {
     
     /**
@@ -77,14 +78,14 @@ class Leb128 {
      * @param in 
      * @return Int
      */
-    public static function readSignedLeb128(in:BytesInput):Int{
+    public static function readSignedLeb128(_in:BytesInput):Int{
         var result = 0;
         var cur;
         var count = 0;
         var signBits = -1;
 
         do {
-            cur = in.readByte() & 0xff;
+            cur = _in.readByte() & 0xff;
             result |= (cur & 0x7f) << (count * 7);
             signBits <<= 7;
             count++;
@@ -107,13 +108,13 @@ class Leb128 {
      * @param in 
      * @return Int
      */
-    public static function readUnsignedLeb128(in:BytesInput):Int {
+    public static function readUnsignedLeb128(_in:BytesInput):Int {
         var result = 0;
         var cur;
         var count = 0;
 
         do {
-            cur = in.readByte() & 0xff;
+            cur = _in.readByte() & 0xff;
             result |= (cur & 0x7f) << (count * 7);
             count++;
         } while (((cur & 0x80) == 0x80) && count < 5);
@@ -157,3 +158,4 @@ class Leb128 {
 
     
 }
+#end

@@ -20,10 +20,12 @@ package binary128.internal.cs;
 
 import haxe.io.BytesOutput;
 import haxe.io.BytesInput;
-
+import haxe.io.Bytes;
 /**
  * Implementation gotten from https://github.com/aumcode/nfx/blob/master/Source/NFX/IO/LEB128.cs
  */
+
+#if cs
 class Leb128 {
     public static function writeSignedLEB128(buf:BytesOutput, value:cs.types.Int64):Void {
         var more = false;
@@ -34,7 +36,7 @@ class Leb128 {
             more = !((((value == 0 ) && ((bt & 0x40) == 0)) ||
                     ((value == -1) && ((bt & 0x40) != 0))));
             if (more) bt |= 0x80; // Mark this byte to show that more bytes will follow.
-            buf.writeByte(bt);
+            buf.writeByte(cast bt);
         }while (more);
     }
 
@@ -43,33 +45,35 @@ class Leb128 {
             var bt = (value & 0x7f);
             value >>= 7;
             if (value != 0) bt |= 0x80;
-            buf.writeByte(bt);
+            buf.writeByte(cast bt);
         }while(value != 0);
     }
 
     public static function readSignedLEB128(buf:BytesInput):cs.types.Int64 {
-        var bt:cs.types.Int8 = 0;
+        var bt = 0;
 
         var value:cs.types.Int64 = 0;
         var shift = 0;
 
         do {
-            var ibt:cs.types.Int8 = buf.readByte();
+            var ibt = buf.readByte();
             if (ibt<0) throw "LEB128.ReadSLEB128(premature stream end)";
             bt = ibt;
 
-            value |= (cast((bt & 0x7f), cs.types.Int64) << shift);
+            value |= (bt & 0x7f) << shift;
             shift += 7;
         }while(bt >= 128);
 
         // Sign extend negative numbers.
-        if ((bt & 0x40)!=0) value |= (haxe.Int64.ofInt(-1)) << shift;
+        if ((bt & 0x40)!=0){
+            value |= (untyped __cs__('-1L')) << shift;
+        }
 
         return value;
     }
 
     public static function readUnsignedLEB128(buf:BytesInput):cs.types.UInt64 {
-        var value:cs.types.UInt64 = 0;
+        var value = 0;
 
         var shift = 0;
 
@@ -77,7 +81,7 @@ class Leb128 {
             var bt = buf.readByte();
             if (bt<0) throw "LEB128.ReadULEB128(premature stream end)";
 
-            value += cast((bt & 0x7f),cs.types.UInt64)  << shift;
+            value += (bt & 0x7f)  << shift;
 
             if (bt<128) break;
 
@@ -87,3 +91,4 @@ class Leb128 {
         return value;
     }
 }
+#end

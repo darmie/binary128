@@ -1,3 +1,6 @@
 -main Main
+
+-lib console.hx
+
 -cp src/
 -neko bin/Binary128.n

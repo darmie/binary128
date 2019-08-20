@@ -1,3 +1,7 @@
--main Main
+-main Test
+
+-lib console.hx
+
 -cp src/
--cs bin/Binary128/bin/Main.exe
+-cp test/
+-cs bin/Binary128/bin/csharp

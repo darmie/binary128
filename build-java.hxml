@@ -1,4 +1,7 @@
--main Main
+-main Test
 -cp src/
+-cp test/
 
--java bin/Binary128.jar
+-lib console.hx
+
+-java bin/Binary128/bin/java
