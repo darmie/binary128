@@ -118,7 +118,7 @@ class Leb128 {
         return Leb128T.readSignedLeb128(i);
         #end
 
-       
+       return 0;
     }
 
     public static function readInt64(i:BytesInput) {
@@ -137,6 +137,8 @@ class Leb128 {
         #if js 
         return Leb128T.readSignedLeb128(i);
         #end
+
+        return 0;
     }
 
     public static function readUint32(i:BytesInput) {
@@ -155,6 +157,8 @@ class Leb128 {
          #if js 
         return Leb128T.readUnsignedLeb128(i);
         #end
+
+        return 0;
     }
 
     public static function readUint64(i:BytesInput) {
@@ -173,6 +177,8 @@ class Leb128 {
         #if js
         return Leb128T.readUnsignedLeb128(i);
         #end
+
+        return 0;
     }
 
 
