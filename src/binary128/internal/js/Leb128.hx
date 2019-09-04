@@ -74,24 +74,3 @@ class Leb128 {
         return val;
     }
 }
-
-
-
-// abstract U32(Int32) from Int32 to Int32 {
-//     public function new(i:Int32) {
-//         this = i >>> 0;
-//     }
-// }
-
-// abstract U16(Int32) from Int32 to Int32 {
-//     public function new(i:Int32) {
-//         this = i & 65535;
-//     }
-// }
-
-
-// abstract Int16(Int32) from Int32 to Int32 {
-//     public function new(i:Int32) {
-//         this = (i & 65535) << 16 >> 16;
-//     }
-// }
