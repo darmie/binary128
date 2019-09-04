@@ -16,7 +16,9 @@ class Leb128 {
     }
 
     public static function readInt32(input:BytesInput):Int {
-        return Leb128Native.decodeVarInt32(input.readAll());
+        var b = Bytes.alloc(8);
+        input.readBytes(b, 0, 8);
+        return Leb128Native.decodeVarInt32(b);
     }
 
     public static function readInt64(input:BytesInput):Int {

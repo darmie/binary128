@@ -6,17 +6,11 @@ import haxe.io.BytesInput;
 import haxe.io.BytesOutput;
 import haxe.io.Bytes;
 
-#if cs
-typedef UintTest = {
-	v:cs.types.Int64,
-	b:Bytes
-}
-#else
+
 typedef UintTest = {
 	v:Int,
 	b:Bytes
 }
-#end
 
 
 class Test {
