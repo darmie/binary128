@@ -8,13 +8,19 @@ import haxe.io.Bytes;
 
 
 typedef UintTest = {
-	v:Int,
+	v:U32,
+	b:Bytes
+}
+
+typedef IntTest = {
+	v:I32,
 	b:Bytes
 }
 
 
 class Test {
     static var casesUint:Array<UintTest>;
+	static var casesInt:Array<IntTest>;
 
     public static function main() {
         testUnsigned32();
@@ -77,7 +83,7 @@ class Test {
 
         // trace(cast(cs.system.Int32.MinValue, cs.system.Int64));
 		
-		casesUint = [];
+		casesInt = [];
 
 		var buf1 = new BytesBuffer();
 		 buf1.addByte(0x80);
@@ -86,7 +92,7 @@ class Test {
 		 buf1.addByte(0x80);
 		 buf1.addByte(0x78);
 		 var b1 = buf1.getBytes();
-		casesUint.push({
+		casesInt.push({
 			b: b1,
 			v: -2147483648
 		});
@@ -100,7 +106,7 @@ class Test {
 		 buf2.addByte(0xff);
 		 buf2.addByte(0x07);
 		 var b2 = buf2.getBytes();
-		casesUint.push({
+		casesInt.push({
 			b: b2,
 			v: 2147483647
 		});
@@ -109,7 +115,7 @@ class Test {
 		buf3.addByte(0x80);
 		buf3.addByte(0x40);
 		
-		casesUint.push({
+		casesInt.push({
 			b: buf3.getBytes(),
 			v: -8192
 		});
@@ -119,7 +125,7 @@ class Test {
 		buf4.addByte(0xc0);
 		buf4.addByte(0x00);
 		
-		casesUint.push({
+		casesInt.push({
 			b: buf4.getBytes(),
 			v: 8192
 		});
@@ -128,13 +134,14 @@ class Test {
 		buf5.addByte(135);
 		buf5.addByte(0x01);
 		
-		casesUint.push({
+		casesInt.push({
 			b: buf5.getBytes(),
 			v: 135
 		});
 
-		for(c in casesUint){
+		for(c in casesInt){
 			var n = Leb128.readInt32(new BytesInput(c.b));
+			
 			if(n != c.v){
 				// Console.error('[i32] got $n expected ${c.v}');
                 trace('[i32] got $n expected ${c.v}');

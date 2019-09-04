@@ -27,7 +27,7 @@ import haxe.io.Bytes;
 
 #if cs
 class Leb128 {
-    public static function writeSignedLEB128(buf:BytesOutput, value:cs.types.Int64):Void {
+    public static function writeSigned64LEB128(buf:BytesOutput, value:cs.types.Int64):Void {
         var more = false;
 
         do {
@@ -40,7 +40,20 @@ class Leb128 {
         }while (more);
     }
 
-    public static function writeUnsignedLEB128(buf:BytesOutput, value:cs.types.UInt64):Void {
+    public static function writeSigned32LEB128(buf:BytesOutput, value:haxe.Int32):Void {
+        var more = false;
+
+        do {
+            var bt = (value & 0x7f);
+            value >>= 7;
+            more = !((((value == 0 ) && ((bt & 0x40) == 0)) ||
+                    ((value == -1) && ((bt & 0x40) != 0))));
+            if (more) bt |= 0x80; // Mark this byte to show that more bytes will follow.
+            buf.writeByte(cast bt);
+        }while (more);
+    }
+
+    public static function writeUnsigned64LEB128(buf:BytesOutput, value:cs.types.UInt64):Void {
         do {
             var bt = (value & 0x7f);
             value >>= 7;
@@ -49,10 +62,19 @@ class Leb128 {
         }while(value != 0);
     }
 
-    public static function readSignedLEB128(buf:BytesInput):cs.types.Int64 {
+    public static function writeUnsigned32LEB128(buf:BytesOutput, value:UInt):Void {
+        do {
+            var bt = (value & 0x7f);
+            value >>= 7;
+            if (value != 0) bt |= 0x80;
+            buf.writeByte(cast bt);
+        }while(value != 0);
+    }
+
+    public static function readSignedLEB128(buf:BytesInput) {
         var bt = 0;
 
-        var value:cs.types.Int64 = 0;
+        var value:UInt = 0;
         var shift = 0;
 
         do {
@@ -72,7 +94,7 @@ class Leb128 {
         return value;
     }
 
-    public static function readUnsignedLEB128(buf:BytesInput):cs.types.UInt64 {
+    public static function readUnsignedLEB128(buf:BytesInput) {
         var value = 0;
 
         var shift = 0;

@@ -10,5 +10,6 @@
 -main Test
 -dce full 
 -cp src/
+-cp numerix/src
 -cp test/
 -cpp bin/Binary128

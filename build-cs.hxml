@@ -3,5 +3,6 @@
 -lib console.hx
 
 -cp src/
+-cp numerix/src
 -cp test/
 -cs bin/Binary128/bin/csharp

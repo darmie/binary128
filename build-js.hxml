@@ -4,5 +4,6 @@
 -lib uglifyjs
 -dce full
 -cp src/
+-cp numerix/src
 -cp test/
 -js bin/Binary128.js

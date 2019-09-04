@@ -3,4 +3,5 @@
 -lib console.hx
 
 -cp src/
+-cp numerix/src
 -js bin/Binary128.js

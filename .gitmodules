@@ -1,0 +1,3 @@
+[submodule "numerix"]
+	path = numerix
+	url = https://github.com/darmie/numerix

@@ -1,5 +1,6 @@
 -main Test
 -cp src/
+-cp numerix/src
 -cp test/
 
 -lib console.hx

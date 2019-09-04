@@ -31,7 +31,7 @@ class Leb128 {
 		} while (val != 0);
 	}
 
-    public static function readUnsignedLeb128(r:BytesInput):UInt {
+    public static function readUnsignedLeb128(r:BytesInput) {
         var val = 0;
         var shift = 0;
         var byt = null;
@@ -59,6 +59,7 @@ class Leb128 {
         var signBits = -1;
 
         do {
+            
             byt = r.readByte();
             pos++;
             val |= (byt & 0x7F) << shl;
@@ -73,4 +74,6 @@ class Leb128 {
 
         return val;
     }
+
+    
 }
