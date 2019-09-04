@@ -74,7 +74,7 @@ class Leb128 {
     }
 
     /**
-     * Reads an unsigned integer from {@code in}.
+     * Reads a signed integer from {@code in}.
      * @param in 
      * @return Int
      */

@@ -1,6 +1,8 @@
--main Main
+-main Test
 
--lib console.hx
-
+# -lib console.hx
+-lib uglifyjs
+-dce full
 -cp src/
+-cp test/
 -js bin/Binary128.js

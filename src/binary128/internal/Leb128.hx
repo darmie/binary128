@@ -19,6 +19,10 @@ typedef Leb128T = binary128.internal.cs.Leb128;
 typedef Leb128T = binary128.internal.java.Leb128;
 #end
 
+#if js
+typedef Leb128T = binary128.internal.js.Leb128;
+#end
+
 
 /**
  * Common leb128 class
@@ -36,6 +40,10 @@ class Leb128 {
         #if java 
         Leb128T.writeSignedLeb128(w, val);
         #end
+
+        #if js
+        Leb128T.writeSignedLeb128(w, val);
+        #end
         
     }
 
@@ -49,6 +57,10 @@ class Leb128 {
         #end
 
         #if java 
+        Leb128T.writeUnsignedLeb128(w, val);
+        #end
+
+        #if js
         Leb128T.writeUnsignedLeb128(w, val);
         #end
     }
@@ -65,6 +77,10 @@ class Leb128 {
         #if java 
         Leb128T.writeSignedLeb128(w, val);
         #end
+
+        #if js
+        Leb128T.writeSignedLeb128(w, val);
+        #end
     }
 
     public static function writeUint64(w:BytesOutput, val) {
@@ -77,6 +93,10 @@ class Leb128 {
         #end
 
         #if java 
+        Leb128T.writeUnsignedLeb128(w, val);
+        #end
+
+        #if js
         Leb128T.writeUnsignedLeb128(w, val);
         #end
     }
@@ -93,6 +113,12 @@ class Leb128 {
         #if java 
         return Leb128T.readSignedLeb128(i);
         #end
+
+        #if js
+        return Leb128T.readSignedLeb128(i);
+        #end
+
+       return 0;
     }
 
     public static function readInt64(i:BytesInput) {
@@ -107,6 +133,12 @@ class Leb128 {
         #if java 
         return Leb128T.readSignedLeb128(i);
         #end
+
+        #if js 
+        return Leb128T.readSignedLeb128(i);
+        #end
+
+        return 0;
     }
 
     public static function readUint32(i:BytesInput) {
@@ -121,6 +153,12 @@ class Leb128 {
         #if java 
         return Leb128T.readUnsignedLeb128(i);
         #end
+
+         #if js 
+        return Leb128T.readUnsignedLeb128(i);
+        #end
+
+        return 0;
     }
 
     public static function readUint64(i:BytesInput) {
@@ -135,6 +173,12 @@ class Leb128 {
         #if java 
         return Leb128T.readUnsignedLeb128(i);
         #end
+
+        #if js
+        return Leb128T.readUnsignedLeb128(i);
+        #end
+
+        return 0;
     }
 
 
