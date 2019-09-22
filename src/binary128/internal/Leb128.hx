@@ -131,7 +131,7 @@ class Leb128 {
         #end
 
         #if java 
-        return Leb128T.readSignedLeb128(i);
+        return Leb128T.readSigned64Leb128(i);
         #end
 
         #if js 
@@ -171,7 +171,7 @@ class Leb128 {
         #end
 
         #if java 
-        return Leb128T.readUnsignedLeb128(i);
+        return Leb128T.readUnsigned64Leb128(i);
         #end
 
         #if js

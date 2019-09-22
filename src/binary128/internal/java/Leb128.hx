@@ -78,7 +78,32 @@ class Leb128 {
      * @param in 
      * @return Int
      */
-    public static function readSignedLeb128(_in:BytesInput):Int{
+    public static function readSignedLeb128(_in:BytesInput){
+        var result = 0;
+        var cur;
+        var count = 0;
+        var signBits = -1;
+
+        do {
+            cur = _in.readByte() & 0xff;
+            result |= (cur & 0x7f) << (count * 7);
+            signBits <<= 7;
+            count++;
+        } while (((cur & 0x80) == 0x80) && count < 5);
+
+        if ((cur & 0x80) == 0x80) {
+            throw "invalid LEB128 sequence";
+        }
+
+        // Sign extend if appropriate
+        if (((signBits >> 1) & result) != 0 ) {
+            result |= signBits;
+        }
+
+        return result;
+    }
+
+    public static function readSigned64Leb128(_in:BytesInput):I64{
         var result = 0;
         var cur;
         var count = 0;
@@ -108,7 +133,7 @@ class Leb128 {
      * @param in 
      * @return Int
      */
-    public static function readUnsignedLeb128(_in:BytesInput):Int {
+    public static function readUnsignedLeb128(_in:BytesInput) {
         var result = 0;
         var cur;
         var count = 0;
@@ -126,11 +151,26 @@ class Leb128 {
         return result;
     }
 
+    public static function readUnsigned64Leb128(_in:BytesInput):U64 {
+        var result:I64 = 0;
+        var shift:Int = 0;
+        var count = 0;
+
+        while((_in.readByte() & 0x80) != 0){
+            var data:I64 = _in.readByte() & 0xff << shift;
+            shift += 7;
+            result |= data;
+        }
+        result |= _in.readByte()<<shift;
+
+        return result;
+    }
+
     /**
      * Writes {@code value} as an unsigned integer to {@code out}, starting at
      * {@code offset}. Returns the number of bytes written.
      */
-    public static  function writeUnsignedLeb128(out:BytesOutput, value:Int):Void {
+    public static  function writeUnsignedLeb128(out:BytesOutput, value):Void {
         var remaining = value >>> 7;
 
         while (remaining != 0) {
@@ -142,7 +182,7 @@ class Leb128 {
         out.writeByte((value & 0x7f));
     }
 
-    public static  function writeSignedLeb128(out:BytesOutput, value:Int):Void {
+    public static  function writeSignedLeb128(out:BytesOutput, value):Void {
         var remaining = value >>> 7;
         var hasMore = true;
         var end = ((value & IntegerClass.MIN_VALUE) == 0) ? 0 : -1;
