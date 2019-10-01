@@ -7,7 +7,7 @@ import haxe.Int32;
 import haxe.Int64;
 
 #if cpp 
-typedef Leb128T =  binary128.internal.cpp.Leb128;
+typedef Leb128T =  binary128.internal.cplusplus.Leb128;
 #end
 
 #if cs 
