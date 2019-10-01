@@ -162,6 +162,7 @@ class Test {
 			var reader = new BytesInput(buf);
 			var val = Leb128.readInt64(reader);
 			var readLen = buf.length - reader.length;
+			
 			if(readLen > (64+6)/7){
 				// Console.error('[i64] read len:$readLen larger then ceil(N/7) bytes');
                 trace('[i64] read len:$readLen larger then ceil(N/7) bytes');
@@ -171,6 +172,7 @@ class Test {
 			
 			Leb128.writeInt64(buf2, val);
 			var b2 = buf2.getBytes();
+			
 			if(readLen <= b2.length){
 				if(!(buf.length >= b2.length && buf.sub(0, b2.length).compare(b2) == 0)){
 					// Console.error('val:$val, origin buf:${buf.getData()}, buf2:${b2.getData()}');
@@ -228,6 +230,7 @@ class Test {
 			var buf2 = new BytesOutput();
 			
 			Leb128.writeUint32(buf2, val);
+
 			var b2 = buf2.getBytes();
 			if(readLen <= b2.length){
 				if(!(buf.length >= b2.length && buf.sub(0, b2.length).compare(b2) == 0)){

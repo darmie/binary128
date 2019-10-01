@@ -1,11 +1,11 @@
 
---library ammer
-# --library hxcpp
+# --library ammer
+# # --library hxcpp
 
--lib console.hx
+# -lib console.hx
 
--D ammer.lib.leb128.include=native/cpp
--D ammer.lib.leb128.library=native/cpp
+# -D ammer.lib.leb128.include=native/cpp
+# -D ammer.lib.leb128.library=native/cpp
 # -D ammer.lib.leb128.headers=tmp.leb128.h
 -main Test
 -dce full 
