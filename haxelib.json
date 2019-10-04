@@ -1,13 +1,13 @@
 {
   "name": "Binary128",
-  "url" : "https://github.com/YOUR_NAME/Binary128/",
+  "url" : "https://github.com/darmie/Binary128/",
   "license": "MIT",
   "tags": ["haxe","neko","nodejs","js","cpp","cs","java"],
-  "description": "description of Binary128",
+  "description": "Varying length Little Endian Base128 binary encoder and decoder",
   "classPath": "src",
   "version": "0.0.1",
   "releasenote": "Initial release",
-  "contributors": ["YOUR_NAME"],
+  "contributors": ["Damilare Akinlaja"],
   "dependencies": {
 
   }
