@@ -7,9 +7,11 @@
 # -D ammer.lib.leb128.include=native/cpp
 # -D ammer.lib.leb128.library=native/cpp
 # -D ammer.lib.leb128.headers=tmp.leb128.h
+
 -main Test
+-lib Numerix
 -dce full 
 -cp src/
--cp numerix/src
+# -cp numerix/src
 -cp test/
 -cpp bin/Binary128
